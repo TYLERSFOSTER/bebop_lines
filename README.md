@@ -1,6 +1,6 @@
 # Bebop Lines
 
-A lightweight Python package for doing awesome things with minimal effort.
+[...What it does...]
 
 ## Purpose and Design
 
@@ -12,14 +12,12 @@ A lightweight Python package for doing awesome things with minimal effort.
 [...]
 
 $$
-\left(
 \begin{array}{ccc}
-0 & 1 & 2 & 3 & 4 & 5 & 6 \\
-\downarrow & \downarrow & \downarrow & \downarrow & \downarrow
-& \downarrow & \downarrow \\
-1 & 0 & 4 & 3 & 5 & 2 & 6
+0 & & 1 & & 2 & & 3 & & 4 & & 5 & & 6 \\
+\downarrow & & \downarrow & & \downarrow & & \downarrow & & \downarrow
+& & \downarrow & & \downarrow \\
+1 & & 0 & & 4 & & 3 & & 5 & & 2 & & 6
 \end{array}
-\right)
 $$
 
 <img src="./images/permutation_bar_plain.jpg" alt="Alt text" width="65%"/>
