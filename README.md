@@ -4,7 +4,7 @@
 
 ## Purpose and Design
 
-### Bebop melodic lines and dense, moving arpeggios
+### Bebop melodic lines, serialism, and dense, moving arpeggios
 
 [...]
 
@@ -20,11 +20,25 @@ $$
 \end{array}
 $$
 
-<img src="./images/permutation_bar_plain.jpg" alt="Alt text" width="65%"/>
+
+<figure style="text-align: center;">
+  <img src="./images/permutation_bar_plain.jpg" alt="Alt text" width="67%"/>
+  <figcaption>Figure 1: Previous permutation encoded as a graph</figcaption>
+</figure>
+
 
 [...]
 
+<figure style="text-align: center;">
 <img src="./images/permutation_bar_attributes.jpg" alt="Alt text" width="75%"/>
+  <figcaption>Figure 2: Depiction of the PermutationBar class.</figcaption>
+</figure>
+
+$$
+\text{output}(\mathscr{B})
+\ =\ 
+(5, 2, 6, 1)
+$$
 
 ### The `group_action` submodule
 
