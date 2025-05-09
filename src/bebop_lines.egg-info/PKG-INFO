@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: bebop_lines
+Version: 0.1.0
+Summary: Default template for PDM package
+Author-email: TYLERSFOSTER <tylerisnotavailable@gmail.com>
+License: MIT
+Requires-Python: ==3.13.*
+Description-Content-Type: text/markdown
+Requires-Dist: pytest>=8.3.5
+Requires-Dist: numpy>=2.2.5
+Requires-Dist: mido>=1.3.3

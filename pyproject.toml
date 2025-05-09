@@ -1,0 +1,15 @@
+[project]
+name = "bebop_lines"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "TYLERSFOSTER", email = "tylerisnotavailable@gmail.com"},
+]
+dependencies = ["pytest>=8.3.5", "numpy>=2.2.5", "mido>=1.3.3"]
+requires-python = "==3.13.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
