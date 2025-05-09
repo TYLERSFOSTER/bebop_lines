@@ -9,7 +9,7 @@ from mido import Message, MidiFile, MidiTrack
 import bebop_lines.group_action as ga
 
 
-def save_MIDI(element_count, tonic=69, frame_count=5):
+def save_MIDI(pitch_phrase, duration_phrase, tonic=69):
   concatenated_lines = self.bebop_lines_single(element_count, frame_count=frame_count)
   
   mid = MidiFile()
@@ -18,14 +18,16 @@ def save_MIDI(element_count, tonic=69, frame_count=5):
   
   bpm = 200
   ticks_per_beat = mid.ticks_per_beat
-  microseconds_per_beat = mido.bpm2tempo(bpm)
-  track.append(mido.MetaMessage('set_tempo', tempo=microseconds_per_beat))
+  # microseconds_per_beat = mido.bpm2tempo(bpm)
+  # track.append(mido.MetaMessage('set_tempo', tempo=microseconds_per_beat))
 
-  for note in concatenated_lines:
-    note = note + tonic
-    duration_secs = 0.1
-    ticks = int(mido.second2tick(duration_secs, ticks_per_beat, microseconds_per_beat))
-    track.append(Message('note_on', note=note, velocity=64, time=0))
-    track.append(Message('note_off', note=note, velocity=64, time=ticks))
+  running_clock = 0.0
+  for pitch, duration in zip(pitch_phrase, duration_phrase):
+    note = pitch + tonic
+
+    track.append(Message('note_on', note=note, velocity=64, time=running_clock))
+    
+    running_clock = running_clock + duration
+    track.append(Message('note_off', note=note, velocity=64, time=running_clock))
 
   mid.save('./bebop_lines/output.mid')

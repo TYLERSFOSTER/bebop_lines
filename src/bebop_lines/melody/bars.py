@@ -60,3 +60,13 @@ class PermutationBar():
       duration_list.append(duration)
 
     return degree_list, duration_list
+
+  def first_degree(self):
+    first_degree = self.print_degress()[0]
+
+    return first_degree
+
+  def last_degree(self):
+    last_degree = self.print_degress()[-1]
+
+    return last_degree
