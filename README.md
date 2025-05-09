@@ -1,0 +1,117 @@
+# Bebop Lines
+
+A lightweight Python package for doing awesome things with minimal effort.
+
+## Purpose and Design
+
+### Bebop melodic lines and dense, moving arpeggios
+
+[...]
+
+### The `PermutationBar` class
+[...]
+
+$$
+\left(
+\begin{array}{ccc}
+0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+\downarrow & \downarrow & \downarrow & \downarrow & \downarrow
+& \downarrow & \downarrow \\
+1 & 0 & 4 & 3 & 5 & 2 & 6
+\end{array}
+\right)
+$$
+
+<img src="./images/permutation_bar_plain.jpg" alt="Alt text" width="65%"/>
+
+[...]
+
+<img src="./images/permutation_bar_attributes.jpg" alt="Alt text" width="75%"/>
+
+### The `group_action` submodule
+
+[...]
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/TYLERSFOSTER/bebop_lines
+```
+
+Once the repository is cloned, go to the root directory:
+
+```bash
+cd bebop_lines
+```
+
+Install using pip or PDM. With pip:
+```bash
+pip install .
+```
+With PDM:
+```bash
+pdm add .
+```
+
+<!-- ## Usage
+
+Here’s a simple example of how to use it:
+
+```python
+from bebop_lines import do_awesome_thing
+
+result = do_awesome_thing("world")
+print(result)  # Hello, world! Stay awesome.
+```
+
+## Features
+
+- 🚀 Easy-to-use API  
+- ✅ Zero dependencies  
+- 🧪 Fully tested  
+- 📦 Ready for PyPI
+
+## API Reference
+
+### `do_awesome_thing(name: str) -> str`
+
+Returns a personalized awesome message.
+
+```python
+do_awesome_thing("Alice")
+# "Hello, Alice! Stay awesome."
+``` -->
+
+## Contributing
+
+We welcome contributions!
+
+1. Fork the repository  
+2. Create your feature branch (`git checkout -b feature/thing`)  
+3. Commit your changes (`git commit -am 'Add awesome thing'`)  
+4. Push to the branch (`git push origin feature/thing`)  
+5. Open a pull request
+
+To set up the project locally:
+
+```bash
+git clone https://github.com/yourusername/bebop_lines.git
+cd bebop_lines
+pdm install
+```
+
+Run the tests:
+
+```bash
+pytest
+```
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Authors
+
+- [@TYLERSFOSTER](https://github.com/TYLERSFOSTER)
