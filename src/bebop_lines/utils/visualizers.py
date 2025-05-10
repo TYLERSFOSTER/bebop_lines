@@ -41,12 +41,13 @@ def visualize_scored(degrees_list : list[int], filename : str | None=None):
   ax.invert_yaxis()
   plt.grid(True, which='both', color='gray', linestyle='--', linewidth=0.5)
 
-  plt.title("Grid Scatter with Shading")
+  plt.title("Piano Roll Line with Curvature Gradient")
   plt.xlabel("Index")
-  plt.ylabel("Y Value")
+  plt.ylabel("Value")
 
   if not isinstance(filename, str):
     filename = get_timestamped_filename(prefix="plot", ext="png", outdir="outputs/figs")
 
   plt.savefig(filename)
   plt.show()
+  plt.clf()
