@@ -56,3 +56,7 @@ def test_PermutationBar__first_degree(permutation_group, start_idx, value_shift,
     bar = bars.PermutationBar(permutation, start_idx, start_idx + 2, 0, value_shift, tonic_degree=tonic_degree)
 
     assert bar.first_degree() == permutation[start_idx] + tonic_degree + value_shift
+
+
+# TODO: Test PermutationBar.first_degree
+# TODO: Test PermutationBar.print_line

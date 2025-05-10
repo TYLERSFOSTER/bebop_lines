@@ -13,14 +13,18 @@ class PermutationPhrase():
       assert isinstance(entry, PermutationBar)
 
     self.bars_list = bars_list
+    self.permutations_list = [bar.permutation for bar in bar_list]
+    
+    degree_phrase = []
+    duration_phrase = []
+    barline_degrees = []
+    for k, bar in enumerate(self.bars_list):
+        barline_degrees.append(k)
 
-    bar_jumps = []
-    absolute_bar_jumps = []
-    for idx in range(1, len(self.bars_list)):
-        last_ending_degree = bars_list[idx -1 ].last_degree()
-        next_starting_degree = bars_list[idx -1 ].first_degree()
+        degree_list, duration_list = bar.print_line()
 
-        difference = next_starting_degree - last_ending_degree
-        absolute_difference = math.abs(difference)
-
-    self.bar_jumps = []
+        degree_phrase = degree_phrase + degree_list
+        duration_phrase = duration_phrase + duration_list
+    self.barline_degrees = barline_degrees
+    self.degree_phrase = degree_phrase
+    self.duration_phrase = duration_phrase

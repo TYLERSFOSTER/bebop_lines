@@ -1,7 +1,7 @@
 ![banner](/images/line_on_staff_0.jpg)
 # Bebop Lines
 
-*Bebop Lines* is a Python package for generating and manipulating rising/falling systems of melodic cells. It is a utility for creating long, musically meaningful chromatic phrases, i.e., for creating bebop-like melodic lines.
+*Bebop Lines* is a Python package for generating and manipulating systems of moving melodic cells. It is a utility for creating long, musically meaningful chromatic phrases, i.e., for creating bebop-like melodic lines.
 
 The package uses methods closely related to the [*tone row*](https://en.wikipedia.org/wiki/Tone_row)-manipulating techniques of 20th century [*serialism*](https://en.wikipedia.org/wiki/Serialism), based on permutation of the order of notes in chromatic scales.
 

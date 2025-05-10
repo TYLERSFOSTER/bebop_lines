@@ -45,7 +45,7 @@ class PermutationBar():
     self.ind_shift = new_idx_shift
     self.value_shift = new_value_shift
 
-  def print_degrees(self):
+  def print_line(self):
     degree_list = []
     duration_list = []
 
@@ -64,7 +64,7 @@ class PermutationBar():
     return degree_list, duration_list
 
   def first_degree(self):
-    first_degree = self.print_degrees()[0][0]
+    first_degree = self.print_line()[0][0]
 
     return first_degree
 
