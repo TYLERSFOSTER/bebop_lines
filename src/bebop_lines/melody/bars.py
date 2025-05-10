@@ -3,6 +3,21 @@ from __future__ import annotations
 import bebop_lines.group_action as grp
 
 class PermutationBar():
+  """
+  Class representing a single musical bar containing a brief
+  chromatic segment optained from a permutation
+
+  Attributes:
+    start_idx :
+    end_idx :
+    idx_shift :
+    value_shift :
+    permutation :
+    number_of_elements :
+    tonic_degree :
+    permutation_group : 
+    duration_list : 
+  """
   def __init__(
     self,
     permutation : list[int],

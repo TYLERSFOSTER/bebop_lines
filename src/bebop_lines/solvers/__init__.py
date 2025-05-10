@@ -1,4 +1,4 @@
-# group_action/__init__.py
+# solvers/__init__.py
 
 from .pivots import pivot_score
 from .pivots import to_midi_velocity

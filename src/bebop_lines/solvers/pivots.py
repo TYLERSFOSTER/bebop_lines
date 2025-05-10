@@ -1,5 +1,7 @@
+"""
+Tool for computing the local curvature in a melodic line
+"""
 from __future__ import annotations
-
 
 def pivot_score(degree_list : list[int]) -> list[float]:
   """
