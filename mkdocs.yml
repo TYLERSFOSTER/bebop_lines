@@ -1,0 +1,17 @@
+site_name: YourProjectName
+theme:
+  name: material
+
+nav:
+  - Home: index.md
+  - Usage: usage.md
+  - API Reference: api_reference.md
+  - Design Notes: design_notes.md
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_root_full_path: false
