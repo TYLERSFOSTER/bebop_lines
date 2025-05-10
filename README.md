@@ -9,7 +9,7 @@ The actions of permutation groups on sequences (of notes) plays a central role i
 
 ## Purpose and Design
 
-### Bebop lines, serialism, and shifting, dense melodic cells
+### Bebop lines, serialism, and dense melodic cells that rise and fall
 One central feature of the sorts of melodic lines that appear in bebop horn solos is a predominance of chromatically melodies, often appearing in rising and falling sequences, with pivot tones revealing the underlying key.
 
 Suppose given an arbitrary *scale*, meaning any sequence of $N$ distinct pitches $(p_0,\ p_1,\ p_2,\ \cdots,\ p_{N-1})$ satisfying
@@ -36,9 +36,10 @@ $$
 \end{array}
 $$
 
+Call this permutation $\sigma$. The *graph* of this particular permutation, that is, the set of all pairs $(n,\ \sigma(n))$ in the square $(0,\ 1,\ \dots,\ N-1)\times(0,\ 1,\ \dots,\ N-1)$
 
 <figure style="text-align: center;">
-  <img src="./images/permutation_bar_plain.jpg" alt="Alt text" width="56%"/>
+  <img src="./images/permutation_bar_evaluate.jpg" alt="Alt text" width="56%"/>
   <figcaption>Figure 1: Previous permutation encoded as a graph</figcaption>
 </figure>
 
@@ -55,6 +56,14 @@ $$
 \ =\ 
 (5, 2, 6, 1)
 $$
+
+
+[...]
+
+<figure style="text-align: center;">
+<img src="./images/midi_print.jpg" alt="Alt text" width="33%"/>
+  <figcaption>Figure 3: MIDI "piano roll" printed from PermutationBar instance.</figcaption>
+</figure>
 
 ### The `group_action` submodule
 
