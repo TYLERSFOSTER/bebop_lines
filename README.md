@@ -1,18 +1,22 @@
 # Bebop Lines
 
-*Bebop Lines* is a Python package for generating and manipulating rising/falling systems of arpegios to create bebop-like melodic lines.
+*Bebop Lines* is a Python package for generating and manipulating rising/falling systems of melodic cells to create bebop-like melodic lines.
 
-The package uses methods closely related to the [*tone row*](https://en.wikipedia.org/wiki/Tone_row)-manipulating techniques of 20th century [*serialism*](https://en.wikipedia.org/wiki/Serialism), based on the permutation of the order of notes in chromatic scales.
+The package uses methods closely related to the [*tone row*](https://en.wikipedia.org/wiki/Tone_row)-manipulating techniques of 20th century [*serialism*](https://en.wikipedia.org/wiki/Serialism), based on permutation of the order of notes in chromatic scales.
 
 The actions of permutation groups on sequences (of notes) plays a central role in the present package. The package includes tools for implementing group actions and closely related transformations on melodic lines, and tools for printing these lines to either `midi` or `wav` files.
 
 
 ## Purpose and Design
 
-### Bebop melodic lines, serialism, and dense, moving arpeggios
-One central feature of the sorts of melodic lines that appear in bebop horn solos is a predominance of tight, chromatic arpegios, often appearing in rising and falling sequences.
+### Bebop lines, serialism, and shifting, dense melodic cells
+One central feature of the sorts of melodic lines that appear in bebop horn solos is a predominance of chromatically melodies, often appearing in rising and falling sequences, with pivot tones revealing the underlying key.
 
-[...]
+Suppose given an arbitrary *scale*, meaning any sequence of $N$ distinct pitches $(p_0,\ p_1,\ p_2,\ \cdots,\ p_{N-1})$ satisfying
+$$
+p_0\ <\ p_1\ <\ p_2\ <\ \cdots\ <\ p_{N-1}.
+$$
+The set of all arpegios running 
 
 ### The `PermutationBar` class
 [...]
