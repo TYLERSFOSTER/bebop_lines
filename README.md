@@ -13,10 +13,11 @@ The actions of permutation groups on sequences (of notes) plays a central role i
 One central feature of the sorts of melodic lines that appear in bebop horn solos is a predominance of chromatically melodies, often appearing in rising and falling sequences, with pivot tones revealing the underlying key.
 
 Suppose given an arbitrary *scale*, meaning any sequence of $N$ distinct pitches $(p_0,\ p_1,\ p_2,\ \cdots,\ p_{N-1})$ satisfying
+$$p_0\ <\ p_1\ <\ p_2\ <\ \cdots\ <\ p_{N-1}.$$
+The set of all possible melodic cells constituing full runs of the scale is none other than the set of permutations of the pitches in our scale:
 $$
-p_0\ <\ p_1\ <\ p_2\ <\ \cdots\ <\ p_{N-1}.
+\text{Perm}(\{p_0,\ p_1,\ p_2,\ \dots,\ p_{N-1}\})
 $$
-The set of all arpegios running 
 
 ### The `PermutationBar` class
 [...]
@@ -31,18 +32,12 @@ $$
 $$
 
 
-<figure style="text-align: center;">
-  <img src="./images/permutation_bar_plain.jpg" alt="Alt text" width="67%"/>
-  <figcaption>Figure 1: Previous permutation encoded as a graph</figcaption>
-</figure>
+![image_0](/images/permutation_bar_plain.jpg){width=40%}
 
 
 [...]
 
-<figure style="text-align: center;">
-<img src="./images/permutation_bar_attributes.jpg" alt="Alt text" width="75%"/>
-  <figcaption>Figure 2: Depiction of the PermutationBar class.</figcaption>
-</figure>
+![image_1](/images/permutation_bar_attributes.jpg){width=40%}
 
 $$
 \text{output}(\mathscr{B})
