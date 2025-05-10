@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import math
-
 
 def pivot_score(degree_list : list[int]) -> list[float]:
   """
@@ -50,5 +48,3 @@ def to_midi_velocity(pivot_score_list : list[int]) -> list[int]:
   midi_vol_list = [int(64 + 63 * pivot_score/pivot_delta) for pivot_score in pivot_score_list]
 
   return midi_vol_list
-
-
