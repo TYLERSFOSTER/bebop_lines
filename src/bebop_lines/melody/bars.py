@@ -8,11 +8,11 @@ class PermutationBar():
     permutation : list[int],
     start_idx : int,
     end_idx : int,
-    int_shift : int,
-    out_shift : int,
+    idx_shift : int,
+    value_shift : int,
     permutation_group : ga.PermutationGroup | None=None,
     tonic_degree : int=69, # MIDI pitch number for A4 = 440 Hz
-    duration_list : list | None,
+    duration_list : list | None=None,
   ):
     self.start_idx = start_idx
     self.end_idx = end_idx
@@ -22,6 +22,8 @@ class PermutationBar():
 
     self.permutation = permutation
     self.number_of_elements = len(self.permutation)
+
+    self.tonic_degree = tonic_degree
 
     if isinstance(permutation_group, type(None)):
       self.permutation_group = ga.PermutationGroup(self.number_of_elements)
@@ -54,7 +56,7 @@ class PermutationBar():
       duration = self.duration_list[shifted_idx]
 
       shifted_value = value + self.value_shift
-      shifted_valued_at_tonic = shifted_value + tonic_degree
+      shifted_valued_at_tonic = shifted_value + self.tonic_degree
       
       degree_list.append(shifted_valued_at_tonic)
       duration_list.append(duration)
@@ -62,11 +64,11 @@ class PermutationBar():
     return degree_list, duration_list
 
   def first_degree(self):
-    first_degree = self.print_degress()[0]
+    first_degree = self.print_degrees()[0][0]
 
     return first_degree
 
   def last_degree(self):
-    last_degree = self.print_degress()[-1]
+    last_degree = self.print_degrsees()[0][-1]
 
     return last_degree
