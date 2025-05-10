@@ -13,7 +13,7 @@ class PermutationPhrase():
       assert isinstance(entry, PermutationBar)
 
     self.bars_list = bars_list
-    self.permutations_list = [bar.permutation for bar in bar_list]
+    self.permutations_list = [bar.permutation for bar in self.bars_list]
     
     degree_phrase = []
     duration_phrase = []

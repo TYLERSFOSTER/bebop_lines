@@ -17,7 +17,7 @@ class Permutations():
   for increasing n.
   """
   def __init__(self):
-    self.permutation_dict = {1:[[0]]}
+    self.permutation_dict = {1 : [[0]]}
 
   def fillout_to(self, n : int) -> None:
     """
@@ -44,11 +44,14 @@ class Permutations():
   def __len__(self) -> int:
     return self.completed_upto()
 
-  def __getitem__(self, element_count : int) -> dict[int, list[list[int]]]:
-    if element_count > self.completed_upto():
-      self.fillout_to(element_count)
+  def __getitem__(self, index: int) -> list[list[int]]:
+    if index > self.completed_upto():
+        self.fillout_to(index)
 
-    return self.permutation_dict[element_count]
+    permutation_group = self.permutation_dict[index]
+
+    return permutation_group
+  
 
   def completed_upto(self) -> int:
     """
@@ -69,6 +72,7 @@ class PermutationGroup():
       permutations = Permutations()
 
     self.number_of_elements = number_of_elements
+    permutations.fillout_to(number_of_elements)
 
     self.underlying_set = permutations[number_of_elements]
     self.identity = [n for n in range(number_of_elements)]

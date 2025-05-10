@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import bebop_lines.group_action as ga
+import bebop_lines.group_action as grp
 
 class PermutationBar():
   def __init__(
@@ -10,7 +10,7 @@ class PermutationBar():
     end_idx : int,
     idx_shift : int,
     value_shift : int,
-    permutation_group : ga.PermutationGroup | None=None,
+    permutation_group : grp.PermutationGroup | None=None,
     tonic_degree : int=69, # MIDI pitch number for A4 = 440 Hz
     duration_list : list | None=None,
   ):
@@ -26,15 +26,15 @@ class PermutationBar():
     self.tonic_degree = tonic_degree
 
     if isinstance(permutation_group, type(None)):
-      self.permutation_group = ga.PermutationGroup(self.number_of_elements)
-    else:
-      assert len(self.permutation) == len(permutation_group.number_of_elements)
+      self.permutation_group = grp.PermutationGroup(self.number_of_elements)
+    elif isinstance(permutation_group, grp.PermutationGroup):
+      assert len(self.permutation) == permutation_group.number_of_elements
       self.permutation_group = permutation_group
     
     if isinstance(duration_list, type(None)):
       self.duration_list = [1.0 for n in range(self.number_of_elements)]
     else:
-      assert len(duration_list) == self.number_of_permutations
+      assert len(duration_list) == self.number_of_elements
       self.duration_list = duration_list
   
   def change_bounds(self, new_start_idx, new_end_idx):
@@ -69,6 +69,6 @@ class PermutationBar():
     return first_degree
 
   def last_degree(self):
-    last_degree = self.print_degrsees()[0][-1]
+    last_degree = self.print_line()[0][-1]
 
     return last_degree
