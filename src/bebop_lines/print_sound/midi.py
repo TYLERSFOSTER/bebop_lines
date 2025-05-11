@@ -24,13 +24,13 @@ def save_MIDI(phrase : line.PermutationPhrase, use_curve_amplitude=False):
   # microseconds_per_beat = mido.bpm2tempo(bpm)
   # track.append(mido.MetaMessage('set_tempo', tempo=microseconds_per_beat))
 
-  running_clock = 0.0
+  running_clock = 0
   for pitch, duration, velocity in zip(degree_phrase, duration_phrase, velocity_phrase):
 
     track.append(Message('note_on', note=pitch, velocity=velocity, time=running_clock))
     
-    running_clock = running_clock + duration
+    running_clock = int(running_clock + duration)
     track.append(Message('note_off', note=pitch, velocity=velocity, time=running_clock))
 
-  filename = get_timestamped_filename(prefix="line", ext="midi", outdir="outputs/midi")
+  filename = get_timestamped_filename(prefix="line", ext="mid", outdir="outputs/midi")
   midi_file.save(filename)

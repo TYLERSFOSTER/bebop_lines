@@ -3,4 +3,4 @@
 from .bars import PermutationBar
 from .phrases import PermutationPhrase
 
-__all__ = ["PermutationBar"]
+__all__ = ["PermutationBar", "PermutationPhrase"]

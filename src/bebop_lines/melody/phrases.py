@@ -1,15 +1,12 @@
 from __future__ import annotations
 
-import math
-
-import bebop_lines.group_action as ga
-from bebop_lines.melody.bars import PermutationBar
+import bebop_lines.melody as line
 
 
 class PermutationPhrase():
   """
   Class representing an extended melodic phrase built up from
-  multiple bars, i.e., from multiple PermutationBar instances
+  multiple bars, i.e., from multiple bar.PermutationBar instances
 
   Attributes:
     bars_list : 
@@ -18,10 +15,10 @@ class PermutationPhrase():
     degree_phrase : 
     duration_phrase :
   """
-  def __inti__(self, bars_list : list[PermutationBar]):
+  def __init__(self, bars_list : list[line.PermutationBar]):
     assert isinstance(bars_list, list)
     for entry in bars_list:
-      assert isinstance(entry, PermutationBar)
+      assert isinstance(entry, line.PermutationBar)
 
     self.bars_list = bars_list
     self.permutations_list = [bar.permutation for bar in self.bars_list]
