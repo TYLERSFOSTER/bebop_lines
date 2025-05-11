@@ -47,6 +47,6 @@ def to_midi_velocity(pivot_score_list : list[int]) -> list[int]:
   pivot_range = [min_score, max_score]
   pivot_delta = max_score - min_score
 
-  midi_vol_list = [int(64 + 63 * pivot_score/pivot_delta) for pivot_score in pivot_score_list]
+  midi_vol_list = [abs(int(64 + 63 * (pivot_score - min_score)/pivot_delta)) for pivot_score in pivot_score_list]
 
   return midi_vol_list
