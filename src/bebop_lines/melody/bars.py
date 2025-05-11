@@ -47,7 +47,7 @@ class PermutationBar():
       self.permutation_group = permutation_group
     
     if isinstance(duration_list, type(None)):
-      self.duration_list = [1.0 for n in range(self.number_of_elements)]
+      self.duration_list = [1 for n in range(self.number_of_elements)]
     else:
       assert len(duration_list) == self.number_of_elements
       self.duration_list = duration_list
