@@ -56,15 +56,26 @@ def visualize_scored(degrees_list : list[int], filename : str | None=None):
 
   fig, ax = plt.subplots()
 
+  # plot_color = (0.25, 0.25, 1.0)
+  plot_color = (0.2, 0.2, 0.7)
+
   for i in range(N):
-      ax.add_patch(Rectangle((i, ys[i]), 1, 1, color=str(1 - shade_norm[i])))
+      if i == 0 or i == N - 1:
+          rect_color = plot_color
+      else:
+          rect_color = str(1 - shade_norm[i])
+      ax.add_patch(Rectangle((i, ys[i]), 1, 1, color=rect_color))
+
+  ax.plot([n + 0.5 for n in range(N)], [y + 0.5 for y in ys], color=plot_color, linestyle='-', zorder=5)
+  ax.scatter([n + 0.5 for n in range(N)], [y + 0.5 for y in ys], color=plot_color, s=30, zorder=6)
+  ax.scatter([n + 0.5 for n in range(N)], [y + 0.5 for y in ys], color="white", s=5, zorder=7)
 
   ax.set_xlim(0, N)
   ax.set_ylim(0.0, max(ys)+1)
   ax.set_xticks(range(N))
   ax.set_yticks(range(max(ys)+1))
   ax.set_aspect('equal')
-  plt.grid(True, which='both', color='gray', linestyle='--', linewidth=0.5)
+  plt.grid(True, which='both', color='lightblue', linestyle='-', linewidth=0.75)
 
   # Axis labels: red and bold
   ax.set_xlabel("Index", color='red', fontweight='bold')
