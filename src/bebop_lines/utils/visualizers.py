@@ -60,14 +60,46 @@ def visualize_scored(degrees_list : list[int], filename : str | None=None):
       ax.add_patch(Rectangle((i, ys[i]), 1, 1, color=str(1 - shade_norm[i])))
 
   ax.set_xlim(0, N)
-  ax.set_ylim(0.0, max(ys))
+  ax.set_ylim(0.0, max(ys)+1)
   ax.set_xticks(range(N))
   ax.set_yticks(range(max(ys)+1))
   ax.set_aspect('equal')
-  ax.invert_yaxis()
   plt.grid(True, which='both', color='gray', linestyle='--', linewidth=0.5)
 
-  plt.title("Piano Roll Line with Curvature Gradient")
+  # Axis labels: red and bold
+  ax.set_xlabel("Index", color='red', fontweight='bold')
+  ax.set_ylabel("Value", color='red', fontweight='bold')
+
+  # Ticks: red and smaller
+  ax.tick_params(axis='both', colors='red', labelsize=8)
+
+  # Tick label text bold
+  for label in ax.get_xticklabels() + ax.get_yticklabels():
+      label.set_fontweight('bold')
+
+  # Axes lines (spines) red
+  for spine in ax.spines.values():
+      spine.set_color('red')
+
+  # Make tick label text bold
+  for label in ax.get_xticklabels() + ax.get_yticklabels():
+      label.set_fontweight('bold')
+      label.set_color('red')
+
+  # Axis labels and title red and bold
+  ax.xaxis.label.set_color('red')
+  ax.xaxis.label.set_fontweight('bold')
+  ax.yaxis.label.set_color('red')
+  ax.yaxis.label.set_fontweight('bold')
+  ax.title.set_color('red')
+  ax.title.set_fontweight('bold')
+
+  # Make axis lines (spines) red
+  for spine in ax.spines.values():
+      spine.set_color('red')
+
+# Title: red and bold
+  ax.set_title("Piano Roll Line with Curvature Gradient", color='red', fontweight='bold')
   plt.xlabel("Index")
   plt.ylabel("Value")
 
