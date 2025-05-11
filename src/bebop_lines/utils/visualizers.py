@@ -3,35 +3,12 @@ Utility for visualizing melodic lines
 """
 from __future__ import annotations
 
-import os
-from datetime import datetime
-
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 
 from bebop_lines.solvers.pivots import pivot_score
-
-
-def get_timestamped_filename(prefix="plot", ext="png", outdir="outputs/figs"):
-    """
-    Return a string, to be used as a filename, that includes a timestamp
-
-    Args:
-      prefix : Prefix for the filename
-      ext : Extension for the filename
-      outdir : Output irectory to save the file in
-    
-    Returns
-      The filename as a string
-    """
-    os.makedirs(outdir, exist_ok=True)
-
-    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-
-    filename = os.path.join(outdir, f"{prefix}_{timestamp}.{ext}")
-
-    return filename
+from bebop_lines.utils.gen_filenames import get_timestamped_filename
 
 
 def visualize_scored(degrees_list : list[int], filename : str | None=None):
