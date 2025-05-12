@@ -6,7 +6,7 @@ import bebop_lines.melody as line
 from bebop_lines.solvers.pivots import pivot_score
 
 
-def proj_to_scale(phrase : line.PermutationPhrase) -> np.ndarray:
+def proj_to_degree(phrase : line.PermutationPhrase) -> np.ndarray:
   """
   Generate a distribution on 12-TET MIDI scale degrees that encodes the
   total amplitude of degrees in a given phrase
@@ -33,7 +33,9 @@ class Scale():
   """
   Class reprenting a 12-TET musical scale using MIDI pitch degrees
   """
-  def __init__(self, degree_list : list[int], repeat_mod_12 : bool=False):
+  def __init__(self, degree_list : list[int], repeat_mod_12 : bool=False, degree_weights : list[float] | None=None):
+    assert len(degree_weights) == 128
+
     new_degree_list = []
     for degree in degree_list:
       if 0 <= degree <= 127:
@@ -48,8 +50,20 @@ class Scale():
 
     new_degree_list.sort()
     self.degree_list = new_degree_list
-    self.char_vector = np.array([int(n in self.degree_list) for n in range(128)])
+
+    if isinstance(degree_weights, type(None)):
+      degree_weights = np.ones((127,))
+    self.char_vector = np.array([int(n in self.degree_list) * degree_weights[n]
+                                 for n in range(128)])
 
     self.repeat_mod_12 = repeat_mod_12
 
+  def dot(self, phrase : line.PermutationPhrase) -> float:
+    """
+    Return the dot product between a degree scale and a degree phrase 
+    """
+    dist_of_phrase = proj_to_degree(phrase)
 
+    matching_score = np.dot(self.char_vector, dist_of_phrase)
+
+    return matching_score
