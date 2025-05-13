@@ -20,7 +20,7 @@ def proj_to_degree(phrase : line.PermutationPhrase) -> np.ndarray:
   degree_phrase = phrase.degree_phrase
   velocity_phrase = pivot_score(degree_phrase)
 
-  char_vector = np.zeros_like(degree_phrase)
+  char_vector = np.zeros(128)
   for degree, velocity in zip(degree_phrase, velocity_phrase):
     char_vector[degree] += velocity
 
@@ -31,36 +31,60 @@ def proj_to_degree(phrase : line.PermutationPhrase) -> np.ndarray:
 
 class Scale():
   """
-  Class reprenting a 12-TET musical scale using MIDI pitch degrees
+  Represents a musical scale in 12-tone equal temperament (12-TET)
+  using MIDI pitch degrees.
+
+  Attributes:
+    degree_list (list[int]): List of MIDI degrees representing the scale,
+      possibly extended via mod 12 repetition.
+    char_vector (np.ndarray): A 128-length array where each index corresponds
+      to a MIDI pitch, weighted if it's part of the scale.
+    repeat_mod_12 (bool): Whether to include repeated versions of the degrees
+      modulo 12 across the MIDI range.
   """
-  def __init__(self, degree_list : list[int], repeat_mod_12 : bool=False, degree_weights : list[float] | None=None):
+  def __init__(self, degree_list : list[int], repeat_mod_12 : bool=False, degree_weights : np.ndarray=np.ones((128))):
+    """
+    Initialize a Scale object.
+
+    Args:
+      degree_list : The base degrees to include in the scale (0–127).
+      repeat_mod_12 : If True, adds +/- 12k transpositions of each degree within the valid MIDI range. Defaults to False.
+      degree_weights : A 128-element array specifying weights for each MIDI pitch. Defaults to ones.
+    """
     assert len(degree_weights) == 128
 
-    new_degree_list = []
-    for degree in degree_list:
-      if 0 <= degree <= 127:
-        new_degree_list.append(degree)
+    if repeat_mod_12:
+      new_degree_list = []
+      for degree in degree_list:
+        if 0 <= degree <= 127:
+          new_degree_list.append(degree)
 
-        if repeat_mod_12:
           for n in range(-11, 11):
             new_degree = degree + n * 12
 
-            if 0 <= new_degree <= 127:
+            if 0 <= new_degree <= 127 and not new_degree in new_degree_list:
               new_degree_list.append(new_degree)
+              print("REPEAT_MOD_12:", repeat_mod_12)
+      new_degree_list.sort()
+      self.degree_list = new_degree_list
+    else:
+      self.degree_list = degree_list
 
-    new_degree_list.sort()
-    self.degree_list = new_degree_list
-
-    if isinstance(degree_weights, type(None)):
-      degree_weights = np.ones((127,))
-    self.char_vector = np.array([int(n in self.degree_list) * degree_weights[n]
-                                 for n in range(128)])
+    self.char_vector = np.array([int(n in self.degree_list) * degree_weights[n] 
+                                   for n in range(128)])
 
     self.repeat_mod_12 = repeat_mod_12
 
   def dot(self, phrase : line.PermutationPhrase) -> float:
     """
-    Return the dot product between a degree scale and a degree phrase 
+    Compute a matching score between this scale and a phrase, using a dot product.
+
+    Args:
+      phrase : The phrase to compare, represented by its degree distribution.
+
+    Returns:
+      float: The dot product between the scale's characteristic vector and the
+        degree distribution of the phrase.
     """
     dist_of_phrase = proj_to_degree(phrase)
 
