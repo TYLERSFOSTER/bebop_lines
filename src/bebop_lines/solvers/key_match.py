@@ -22,9 +22,12 @@ def proj_to_degree(phrase : line.PermutationPhrase) -> np.ndarray:
 
   char_vector = np.zeros(128)
   for degree, velocity in zip(degree_phrase, velocity_phrase):
-    char_vector[degree] += velocity
+    if 0 <= degree <= 127:
+      char_vector[degree] = velocity
+      print("CHAR_VECTOR[DEGREE]", char_vector[degree])
 
-  char_vector = char_vector / np.sum(char_vector)
+  if np.sum(char_vector) != 0:
+    char_vector = char_vector / np.sum(char_vector)
 
   return char_vector
 
@@ -42,7 +45,7 @@ class Scale():
     repeat_mod_12 (bool): Whether to include repeated versions of the degrees
       modulo 12 across the MIDI range.
   """
-  def __init__(self, degree_list : list[int], repeat_mod_12 : bool=False, degree_weights : np.ndarray=np.ones((128))):
+  def __init__(self, degree_list : list[int], repeat_mod_12 : bool=False, degree_weights : np.ndarray=np.ones(128)):
     """
     Initialize a Scale object.
 
@@ -64,7 +67,7 @@ class Scale():
 
             if 0 <= new_degree <= 127 and not new_degree in new_degree_list:
               new_degree_list.append(new_degree)
-              print("REPEAT_MOD_12:", repeat_mod_12)
+
       new_degree_list.sort()
       self.degree_list = new_degree_list
     else:
@@ -86,8 +89,12 @@ class Scale():
       float: The dot product between the scale's characteristic vector and the
         degree distribution of the phrase.
     """
+    print("PHRASE.DEGREE_PHRASE:", phrase.degree_phrase)
     dist_of_phrase = proj_to_degree(phrase)
+    print("DIST_PHRASE:", dist_of_phrase)
+
 
     matching_score = np.dot(self.char_vector, dist_of_phrase)
+    print("MATCHING_SCORE:", matching_score)
 
     return matching_score
