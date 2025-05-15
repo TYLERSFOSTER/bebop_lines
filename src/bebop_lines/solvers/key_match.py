@@ -1,12 +1,14 @@
 from __future__ import annotations
 
+import tqdm
+
 import numpy as np
 
 import bebop_lines.melody as line
 from bebop_lines.solvers.pivots import pivot_score
 
 
-def proj_to_degree(phrase : line.PermutationPhrase) -> np.ndarray:
+def proj_to_degree(phrase : line.PermutationPhrase | list[int], normalize : bool=False) -> np.ndarray:
   """
   Generate a distribution on 12-TET MIDI scale degrees that encodes the
   total amplitude of degrees in a given phrase
@@ -16,17 +18,21 @@ def proj_to_degree(phrase : line.PermutationPhrase) -> np.ndarray:
 
   Retuns:
     An np.ndarray providing a distribution of total amplitude in phrase
+
   """
-  degree_phrase = phrase.degree_phrase
+  if isinstance(phrase, line.PermutationPhrase):
+    degree_phrase = phrase.degree_phrase
+  elif isinstance(phrase, list):
+    if all(isinstance(entry, int) for entry in phrase):
+      degree_phrase = phrase
   velocity_phrase = pivot_score(degree_phrase)
 
-  char_vector = np.zeros(128)
+  char_vector = np.zeros((128))
   for degree, velocity in zip(degree_phrase, velocity_phrase):
     if 0 <= degree <= 127:
-      char_vector[degree] = velocity
-      print("CHAR_VECTOR[DEGREE]", char_vector[degree])
+      char_vector[degree] = np.array([velocity])
 
-  if np.sum(char_vector) != 0:
+  if normalize and np.sum(char_vector) != 0:
     char_vector = char_vector / np.sum(char_vector)
 
   return char_vector
@@ -56,7 +62,7 @@ class Scale():
     """
     assert len(degree_weights) == 128
 
-    if repeat_mod_12:
+    if repeat_mod_12 == True:
       new_degree_list = []
       for degree in degree_list:
         if 0 <= degree <= 127:
@@ -73,8 +79,7 @@ class Scale():
     else:
       self.degree_list = degree_list
 
-    self.char_vector = np.array([int(n in self.degree_list) * degree_weights[n] 
-                                   for n in range(128)])
+    self.char_vector = proj_to_degree(self.degree_list)
 
     self.repeat_mod_12 = repeat_mod_12
 
@@ -89,12 +94,8 @@ class Scale():
       float: The dot product between the scale's characteristic vector and the
         degree distribution of the phrase.
     """
-    print("PHRASE.DEGREE_PHRASE:", phrase.degree_phrase)
     dist_of_phrase = proj_to_degree(phrase)
-    print("DIST_PHRASE:", dist_of_phrase)
-
 
     matching_score = np.dot(self.char_vector, dist_of_phrase)
-    print("MATCHING_SCORE:", matching_score)
 
     return matching_score

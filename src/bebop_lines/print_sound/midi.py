@@ -20,7 +20,6 @@ def save_MIDI(phrase : line.PermutationPhrase, use_curve_amplitude=False):
   midi_file.tracks.append(track)
 
   for pitch, duration, velocity in zip(degree_phrase, duration_phrase, velocity_phrase):
-    print("VELOCITY:", velocity)
     track.append(Message('note_on', note=pitch, velocity=velocity, time=3))
     track.append(Message('note_off', note=pitch, velocity=velocity, time=10 * duration))
 
