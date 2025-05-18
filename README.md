@@ -69,7 +69,7 @@ $$
 ### Hamorny-based tools
 
 <figure style="text-align: center;">
-<img src="./images/kernels.jpg" alt="Alt text" width="550em"/>
+<img src="./images/kernels.jpg" alt="Alt text" width="750em"/>
   <figcaption>Figure 3: MIDI "piano roll" printed from PermutationBar instance.</figcaption>
 </figure>
 
