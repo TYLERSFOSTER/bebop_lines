@@ -66,7 +66,12 @@ $$
   <figcaption>Figure 3: MIDI "piano roll" printed from PermutationBar instance.</figcaption>
 </figure>
 
-### The `group_action` submodule
+### Hamorny-based tools
+
+<figure style="text-align: center;">
+<img src="./images/kernels.jpg" alt="Alt text" width="490em"/>
+  <figcaption>Figure 3: MIDI "piano roll" printed from PermutationBar instance.</figcaption>
+</figure>
 
 [...]
 
