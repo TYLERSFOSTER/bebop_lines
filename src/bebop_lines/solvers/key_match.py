@@ -68,7 +68,7 @@ class Scale():
         if 0 <= degree <= 127:
           new_degree_list.append(degree)
 
-          for n in range(-11, 11):
+          for n in range(-14, 14):
             new_degree = degree + n * 12
 
             if 0 <= new_degree <= 127 and not new_degree in new_degree_list:
