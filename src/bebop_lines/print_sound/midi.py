@@ -4,14 +4,15 @@ from mido import Message, MidiFile, MidiTrack
 
 import bebop_lines.melody as line
 from bebop_lines.utils.gen_filenames import get_timestamped_filename
-from bebop_lines.solvers.pivots import to_midi_velocity
+from bebop_lines.solvers.pivots import pivot_score, to_midi_velocity
 
 
 def save_MIDI(phrase : line.PermutationPhrase, use_curve_amplitude=False):
   degree_phrase = phrase.degree_phrase
   duration_phrase = phrase.duration_phrase
   if use_curve_amplitude:
-    velocity_phrase = to_midi_velocity(degree_phrase)
+    pivot_score_list = pivot_score(degree_phrase)
+    velocity_phrase = to_midi_velocity(pivot_score_list)
   else:
     velocity_phrase = [96 for _ in range(len(degree_phrase))]
   

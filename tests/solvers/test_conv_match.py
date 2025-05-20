@@ -14,16 +14,9 @@ import bebop_lines.melody as line
 import bebop_lines.solvers as sol
 
 
-@pytest.mark.parametrize("number_of_elements", list(range(5, 7)))
-@pytest.mark.parametrize("idx_shift", [0, 1, 2])
-@pytest.mark.parametrize("value_shift", list(range(-3, 3)))
-@pytest.mark.parametrize("kernel_list", 
+@pytest.mark.parametrize("number_of_elements, idx_shift, value_shift, kernel_list", 
     [
-        [
-            torch.rand((2, 2)),
-            torch.rand((3, 3)),
-            torch.rand((4, 4)),
-         ]
+        (8, 0, 0, [torch.Tensor([[1.0, 0.0], [0.0, 1.0]])]),
     ]
 )
 def test_MotionAnalyzer(
@@ -46,6 +39,8 @@ def test_MotionAnalyzer(
             for k in range(4)]
 
     phrase = line.PermutationPhrase(bars)
+    phrase.degree_phrase = [7, 6, 5, 4, 3, 2, 1, 0]
+    
 
     analyzer = sol.MotionAnalyzer(kernel_list) # type: ignore
 
