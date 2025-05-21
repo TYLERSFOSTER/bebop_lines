@@ -32,21 +32,24 @@ class MotionAnalyzer(torch.nn.Module):
 
   def forward(self, phrase : line.PermutationPhrase) -> float: # type: ignore
     degree_phrase = torch.Tensor(phrase.degree_phrase)
-    print("DEGREE_PHRASE:", degree_phrase.long())
+    # print("DEGREE_PHRASE:", degree_phrase.long())
     phrase_onehots = F.one_hot(
         degree_phrase.long(),
         num_classes=128,
     )
+    phrase_onehots = phrase_onehots.T
+    print("PHRASE_ONEHOTS.SHAPE", phrase_onehots.shape)
+    print("PHRASE_ONEHOTS", phrase_onehots)
     
     running_score = 0.0
     for module_index, convolution in enumerate(self.module_list):
-      print("CONVOLUTION KERNEL:", self.module_list[-1].weight.data)
+      # print("CONVOLUTION KERNEL:", self.module_list[-1].weight.data)
 
       score_map = convolution(phrase_onehots.float().unsqueeze(0).unsqueeze(0))
       score_map = score_map.squeeze(0).squeeze(0)
 
-      print("SCORE_MAP.SHAPE:", score_map.shape)
-      print("SCORE_MAP:", score_map)
+      # print("SCORE_MAP.SHAPE:", score_map.shape)
+      # print("SCORE_MAP:", score_map)
 
       score = torch.sum(score_map)
       score = float(score)

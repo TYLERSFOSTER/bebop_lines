@@ -1,5 +1,5 @@
 """
-Test ./src/bebop_lines/solvers/con_match.py
+Test ./src/bebop_lines/solvers/conv_match.py
 """
 from __future__ import annotations
 
@@ -11,16 +11,16 @@ import bebop_lines.melody as line
 import bebop_lines.solvers as sol
 
 
-TEST_KERNEL = torch.zeros((8, 128))
-TEST_KERNEL[0, 127] = TEST_KERNEL[1,126]= 1.0
+TEST_KERNEL = torch.zeros((128, 8))
+TEST_KERNEL[127, 0] = TEST_KERNEL[126, 1]= 1.0
 
-TEST_KERNEL_B = torch.zeros((8, 128))
+TEST_KERNEL_B = torch.zeros((128, 8))
 for k in range(8):
-    TEST_KERNEL_B[k, 127 - k] = 1.0
+    TEST_KERNEL_B[127 - k, k] = 1.0
 
-TEST_KERNEL_C = torch.zeros((8, 128))
+TEST_KERNEL_C = torch.zeros((128, 8))
 for k in range(8):
-    TEST_KERNEL_C[k, 127 - k] = (-1)**k * 1.0
+    TEST_KERNEL_C[127 - k, k] = (-1)**k * 1.0
 
 
 @pytest.mark.parametrize("number_of_elements, idx_shift, value_shift, kernel_list, answer", 
