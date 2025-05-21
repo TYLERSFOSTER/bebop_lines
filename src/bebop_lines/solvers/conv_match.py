@@ -55,4 +55,4 @@ class MotionAnalyzer(torch.nn.Module):
 
       running_score += score_weight * score
 
-      return running_score
+    return running_score
