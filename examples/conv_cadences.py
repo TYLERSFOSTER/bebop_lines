@@ -14,22 +14,12 @@ from bebop_lines.print_sound.midi import save_MIDI
 
 N = number_of_elements = 8
 
-kernel_0 = torch.zeros((8, 2))
-kernel_0[0, 0] = 1.0
-kernel_0[7, 1] = 1.0
+kernel_0 = kernel_2 = kernel_4 = torch.zeros((8, 2))
+kernel_0[0, 0] = kernel_2[0, 0] = kernel_4[0, 0] = 1.0
+kernel_0[7, 1] = kernel_2[5, 1] = kernel_4[4, 1] = 1.0
 
 kernel_1 = kernel_0[:, [1, 0]]
-
-kernel_2 = torch.zeros((8, 2))
-kernel_2[0, 0] = 1.0
-kernel_2[5, 1] = 1.0
-
 kernel_3 = kernel_2[:, [1, 0]]
-
-kernel_4 = torch.zeros((8, 2))
-kernel_4[0, 0] = 1.0
-kernel_4[4, 1] = 1.0
-
 kernel_5 = kernel_4[:, [1, 0]]
 
 kernel_list = [

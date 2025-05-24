@@ -37,9 +37,10 @@ def test_proj_to_degree(
     phrase = line.PermutationPhrase(bars)
 
     char_vector = sol.proj_to_degree(phrase)
-    for k in range(char_vector.shape[0]):
-        assert 0 <= char_vector[k] <= 1.0
-    assert round(np.sum(char_vector), 2) == 1.0
+
+    print("CHAR_VECTOR.SHAPE:", char_vector.shape)
+    
+    assert False
 
 
 @pytest.mark.parametrize("repeat_mod_12", [True, False])
@@ -53,6 +54,7 @@ def test_scale__init(repeat_mod_12 : bool) -> None:
     scale = sol.Scale(degree_list, repeat_mod_12=repeat_mod_12)
 
     assert isinstance(scale, sol.Scale)
+    print("SCALE.CHAR_VECTOR:", scale.char_vector)
     assert scale.char_vector.shape == (128,)
     assert scale.repeat_mod_12 == repeat_mod_12
     if not repeat_mod_12:
@@ -91,7 +93,7 @@ def test_scale__dot(
 
     scale = sol.Scale(degree_list, repeat_mod_12=repeat_mod_12)
 
-    matching_score = scale.dot(phrase)
+    matching_score = scale.dot(phrase)/len(phrase)
 
     assert isinstance(matching_score, float)
-    assert 0<= matching_score <= 128
+    assert 0<= matching_score

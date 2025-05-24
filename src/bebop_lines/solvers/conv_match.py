@@ -4,6 +4,7 @@ import torch
 import torch.nn.functional as F
 
 import bebop_lines.melody as line
+from bebop_lines.utils.data_convert import deg_to_char
 
 
 class MotionAnalyzer(torch.nn.Module):
@@ -34,13 +35,7 @@ class MotionAnalyzer(torch.nn.Module):
     self.threshold = threshhold
 
   def forward(self, phrase : line.PermutationPhrase) -> float: # type: ignore
-    degree_phrase = torch.Tensor(phrase.degree_phrase)
-    
-    phrase_onehots = F.one_hot(
-        degree_phrase.long(),
-        num_classes=128,
-    )
-    phrase_onehots = phrase_onehots.T
+    phrase_onehots = deg_to_char(phrase)
     
     running_score = 0.0
     for module_index, convolution in enumerate(self.module_list):

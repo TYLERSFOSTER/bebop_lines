@@ -62,6 +62,13 @@ class PermutationBar():
             assert len(duration_list) == self.number_of_elements
             self.duration_list = duration_list
 
+
+    def __len__(self):
+        bar_window_length = self.end_idx - self.start_idx
+
+        return bar_window_length
+        
+
     def change_bounds(self, new_start_idx : int, new_end_idx : int) -> None:
         """
         Update the start and end indices defining the time step interval for the bar.

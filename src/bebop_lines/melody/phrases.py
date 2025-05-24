@@ -36,3 +36,10 @@ class PermutationPhrase():
     self.barline_degrees = barline_degrees
     self.degree_phrase = degree_phrase
     self.duration_phrase = duration_phrase
+
+  def __len__(self):
+    total_phrase_length = 0
+    for bar in self.bars_list:
+      total_phrase_length += len(bar)
+
+    return total_phrase_length

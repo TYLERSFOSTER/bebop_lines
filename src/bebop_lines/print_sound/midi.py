@@ -15,7 +15,7 @@ def save_MIDI(phrase : line.PermutationPhrase, use_curve_amplitude=False):
     velocity_phrase = to_midi_velocity(pivot_score_list)
   else:
     velocity_phrase = [96 for _ in range(len(degree_phrase))]
-  
+
   midi_file = MidiFile()
   track = MidiTrack()
   midi_file.tracks.append(track)
