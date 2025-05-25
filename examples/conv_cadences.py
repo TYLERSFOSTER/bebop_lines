@@ -9,7 +9,7 @@ from bebop_lines.melody.bars import PermutationBar
 from bebop_lines.melody.phrases import PermutationPhrase
 from bebop_lines.solvers.conv_match import MotionAnalyzer
 from bebop_lines.solvers.key_match import Scale
-from bebop_lines.print_sound.midi import save_MIDI
+from bebop_lines.print_sound.midi import save_midi
 
 
 N = number_of_elements = 8
@@ -65,4 +65,4 @@ for _ in range(50):
     # print("MATCHING_SCORE:", matching_score)
 
     if matching_score >= 37.0 and analysis >= 24.0:
-        save_MIDI(phrase, use_curve_amplitude=True)
+        save_midi(phrase, use_curve_amplitude=True)

@@ -37,10 +37,8 @@ def test_proj_to_degree(
     phrase = line.PermutationPhrase(bars)
 
     char_vector = sol.proj_to_degree(phrase)
-
-    print("CHAR_VECTOR.SHAPE:", char_vector.shape)
     
-    assert False
+    assert char_vector.shape == (128,)
 
 
 @pytest.mark.parametrize("repeat_mod_12", [True, False])

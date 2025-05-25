@@ -44,4 +44,4 @@ bars = [line.PermutationBar(
 phrase = line.PermutationPhrase(bars)
 
 # Create a PermutationPhrase from the list of bars
-midi.save_MIDI(phrase, use_curve_amplitude=True)
+midi.save_midi(phrase, use_curve_amplitude=True)

@@ -32,4 +32,4 @@ for idx in tqdm.tqdm(range(len(group))):
   all_scores.append(present_score)
 
   if present_score > 80.0:
-    midi.save_MIDI(phrase, use_curve_amplitude=True)
+    midi.save_midi(phrase, use_curve_amplitude=True)

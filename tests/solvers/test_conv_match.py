@@ -16,7 +16,7 @@ TEST_KERNEL[127, 0] = TEST_KERNEL[126, 1]= 1.0
 
 TEST_KERNEL_B = torch.zeros((128, 8))
 for k in range(8):
-    TEST_KERNEL_B[127 - k, k] = 1.0
+    TEST_KERNEL_B[127 - k, 7 - k] = 1.0
 
 TEST_KERNEL_C = torch.zeros((128, 8))
 for k in range(8):
@@ -53,10 +53,10 @@ def test_MotionAnalyzer(
             for k in range(4)]
 
     phrase = line.PermutationPhrase(bars)
-    phrase.degree_phrase = [127, 126, 125, 124, 123, 122, 121, 120]
     
 
-    analyzer = sol.MotionAnalyzer(kernel_list, motion_weights=[1.0]) # type: ignore
+    analyzer = sol.MotionAnalyzer(kernel_list) # type: ignore
+    print("MotionAnalyzer.motion_instances:", analyzer.motion_instances)
 
     analysis = analyzer(phrase)
     print("ANALYSIS:", analysis)

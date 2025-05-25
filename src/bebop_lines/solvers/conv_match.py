@@ -35,7 +35,7 @@ class MotionAnalyzer(torch.nn.Module):
     self.threshold = threshhold
 
   def forward(self, phrase : line.PermutationPhrase) -> float: # type: ignore
-    phrase_onehots = deg_to_char(phrase)
+    phrase_onehots = deg_to_char(phrase.degree_phrase)
     
     running_score = 0.0
     for module_index, convolution in enumerate(self.module_list):

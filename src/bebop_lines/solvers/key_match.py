@@ -35,6 +35,7 @@ class Scale():
       repeat_mod_12 : If True, adds +/- 12k transpositions of each degree within the valid MIDI range. Defaults to False.
       degree_weights : A 128-element array specifying weights for each MIDI pitch. Defaults to ones.
     """
+    print("\nPRESENT FUNCTION: __init__() of /solvers/key_match.Scale")
     assert len(degree_weights) == 128
 
     if repeat_mod_12 == True:
@@ -54,7 +55,10 @@ class Scale():
     else:
       self.degree_list = degree_list
 
-    self.char_vector = deg_to_char(self.degree_list)
+    print("      --> Scale.degree_list BEFORE CALL TO deg_to_char(self.degree_list):", self.degree_list)
+    char_array = deg_to_char(self.degree_list)
+    self.char_vector = torch.sum(char_array, dim=-1)
+    print("      <-- OUTPUT OF CALL TO deg_to_char(self.degree_list):",  self.char_vector)
 
     self.repeat_mod_12 = repeat_mod_12
 
@@ -69,15 +73,18 @@ class Scale():
       float: The dot product between the scale's characteristic vector and the
         degree distribution of the phrase.
     """
-    print("PHRASE:", phrase)
-    print("TYPE(PHRASE):", type(phrase))
-    print("PHRASE.DEGREE_PHEASE:", phrase.degree_phrase)
+    print("\nPRESENT FUNCTION: dot() of /solvers/key_match.Scale")
+
+    print("      --> PermutationPhrase `phrase` BEFORE CALL proj_to_degree(phrase):", phrase)
     dist_of_phrase = proj_to_degree(phrase)
+    print("      --> OUTPUT OF CALL proj_to_degree(phrase):", dist_of_phrase)
+    print("          OUTPUT.SHAPE OF CALL proj_to_degree(phrase):", dist_of_phrase.shape)
 
-    print("DIST_OF_PHRASE:", dist_of_phrase)
+    print("      DIST_OF_PHRASE:", dist_of_phrase)
+    print("      self.char_vector.shape:", self.char_vector.shape)
 
-    matching_score = torch.matmul(self.char_vector, dist_of_phrase)
-    print("MATCHING_SCORE.SHAPE:", matching_score.shape)
+    matching_score = torch.matmul(self.char_vector.unsqueeze(0), dist_of_phrase.unsqueeze(0).T)
+    print("      MATCHING_SCORE.SHAPE:", matching_score.shape)
     matching_score = float(matching_score)
 
     return matching_score

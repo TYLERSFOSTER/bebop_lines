@@ -54,5 +54,5 @@ for _ in tqdm.tqdm(range(100)):
 
   if matching_score > 65.0:
     print("MATCHING_SCORE:", matching_score)
-    midi.save_MIDI(phrase, use_curve_amplitude=True)
+    midi.save_midi(phrase, use_curve_amplitude=True)
 

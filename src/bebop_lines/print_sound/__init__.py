@@ -1,5 +1,8 @@
-# print_sound/__init__.py
+"""
+print_sound/__init__.py
+"""
+from __future__ import annotations
 
-from .midi import save_MIDI
+from .midi import save_midi
 
-__all__ = ["save_MIDI"]
+__all__ = ["save_midi"]
