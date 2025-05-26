@@ -14,20 +14,15 @@ INT_DTYPES = {
 }
 
 def deg_to_char(degree_phrase : list[int]) -> torch.Tensor:
-    print("\nPRESENT FUNCTION: utils.data_convert.deg_to_char")
-    print("      DEGREE_PHRASE:", degree_phrase)
-
     assert isinstance(degree_phrase, list)
 
     degree_phrase = list(map(int, degree_phrase))
-    degree_phrase = torch.Tensor(degree_phrase)
+    degree_phrase = torch.Tensor(degree_phrase) # type: ignore
     
     phrase_onehots = F.one_hot(
-        degree_phrase.long(),
+        degree_phrase.long(), # type: ignore
         num_classes=128,
     )
-
-    print("      PHRASE_ONEHOTS.SHAPE:", phrase_onehots.shape)
 
     phrase_onehots = phrase_onehots.T
 

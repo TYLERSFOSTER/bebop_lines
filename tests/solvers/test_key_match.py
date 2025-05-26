@@ -52,7 +52,6 @@ def test_scale__init(repeat_mod_12 : bool) -> None:
     scale = sol.Scale(degree_list, repeat_mod_12=repeat_mod_12)
 
     assert isinstance(scale, sol.Scale)
-    print("SCALE.CHAR_VECTOR:", scale.char_vector)
     assert scale.char_vector.shape == (128,)
     assert scale.repeat_mod_12 == repeat_mod_12
     if not repeat_mod_12:

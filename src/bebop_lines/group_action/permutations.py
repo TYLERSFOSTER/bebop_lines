@@ -38,7 +38,7 @@ class Permutations():
 
             new_permutations.append(current_permutation)
             
-        self.permutation_dict[element_count+1] = new_permutations
+        self.permutation_dict[element_count + 1] = new_permutations
       return
 
   def __len__(self) -> int:
