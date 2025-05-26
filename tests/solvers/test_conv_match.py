@@ -51,7 +51,7 @@ def test_MotionAnalyzer(
 
     phrase = line.PermutationPhrase(bars)
     
-    analyzer = sol.MotionAnalyzer(kernel_list, threshhold=0.0) # type: ignore
+    analyzer = sol.MotionAnalyzer(kernel_list, [1.], threshhold=0.0) # type: ignore
     analysis = analyzer(phrase)
 
     assert analysis == answer

@@ -62,9 +62,6 @@ class PermutationBar():
             assert len(duration_list) == self.number_of_elements
             self.duration_list = duration_list
 
-        self.ind_shift = None
-        self.value_shift = None
-
 
     def __len__(self):
         bar_window_length = self.end_idx - self.start_idx
