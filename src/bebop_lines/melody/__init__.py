@@ -1,4 +1,6 @@
-# melody/__init__.py
+"""
+melody/__init__.py
+"""
 
 from .bars import PermutationBar
 from .phrases import PermutationPhrase
